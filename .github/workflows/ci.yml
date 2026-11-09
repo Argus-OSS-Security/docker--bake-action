@@ -7,33 +7,34 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-on:
-  workflow_dispatch:
-    inputs:
-      buildx-version:
-        description: 'Buildx version or Git context'
-        default: 'latest'
-        required: false
-      buildkit-image:
-        description: 'BuildKit image'
-        default: 'moby/buildkit:buildx-stable-1'
-        required: false
-  schedule:
-    - cron: '0 10 * * *'
-  push:
-    branches:
-      - 'master'
-      - 'releases/v*'
-    tags:
-      - 'v*'
-    paths-ignore:
-      - '.github/workflows/ci-subaction.yml'
-      - 'subaction/**'
-  pull_request:
-    paths-ignore:
-      - '.github/workflows/ci-subaction.yml'
-      - 'subaction/**'
-
+# Triggers intentionally disabled for Argus-OSS-Security.
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       buildx-version:
+#         description: 'Buildx version or Git context'
+#         default: 'latest'
+#         required: false
+#       buildkit-image:
+#         description: 'BuildKit image'
+#         default: 'moby/buildkit:buildx-stable-1'
+#         required: false
+#   schedule:
+#     - cron: '0 10 * * *'
+#   push:
+#     branches:
+#       - 'master'
+#       - 'releases/v*'
+#     tags:
+#       - 'v*'
+#     paths-ignore:
+#       - '.github/workflows/ci-subaction.yml'
+#       - 'subaction/**'
+#   pull_request:
+#     paths-ignore:
+#       - '.github/workflows/ci-subaction.yml'
+#       - 'subaction/**'
+# 
 env:
   BUILDX_VERSION: edge
   BUILDKIT_IMAGE: moby/buildkit:latest

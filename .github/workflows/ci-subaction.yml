@@ -7,26 +7,27 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 10 * * *'
-  push:
-    branches:
-      - 'master'
-      - 'releases/v*'
-    tags:
-      - 'v*'
-    paths:
-      - '.github/workflows/ci-subaction.yml'
-      - 'subaction/**'
-      - 'test/**'
-  pull_request:
-    paths:
-      - '.github/workflows/ci-subaction.yml'
-      - 'subaction/**'
-      - 'test/**'
-
+# Triggers intentionally disabled for Argus-OSS-Security.
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 10 * * *'
+#   push:
+#     branches:
+#       - 'master'
+#       - 'releases/v*'
+#     tags:
+#       - 'v*'
+#     paths:
+#       - '.github/workflows/ci-subaction.yml'
+#       - 'subaction/**'
+#       - 'test/**'
+#   pull_request:
+#     paths:
+#       - '.github/workflows/ci-subaction.yml'
+#       - 'subaction/**'
+#       - 'test/**'
+# 
 jobs:
   matrix:
     runs-on: ubuntu-latest
